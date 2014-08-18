@@ -1,0 +1,21 @@
+
+JVM
+
+Clojure vs. Scala
+
+Fun!
+
+React
+Immediate Mode, like repl or the unix command line
+Declerative UI, describe how you want it to look, change state and let react take care of it
+re-render every time, cheap re-render since react builds a virtual DOM every time you tell it to re-render
+it'll do the minimal change-set and apply it to the DOM. You don't have to deal with it.
+
+
+Persistent Data Structure
+Immutability 
+
+Om 
+ShouldUpdate is only 
+
+ClojureScript
