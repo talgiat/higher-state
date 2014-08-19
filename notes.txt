@@ -5,6 +5,12 @@ Clojure vs. Scala
 
 Fun!
 
+Persistent Data Structure
+In computing, a persistent data structure is a data structure that always preserves the previous version of itself when it is modified. Such data structures are effectively immutable, as their operations do not (visibly) update the structure in-place, but instead always yield a new updated structure. (A persistent data structure is not a data structure committed to persistent storage, such as a disk; this is a different and unrelated sense of the word "persistent.")
+Okasaki 
+Immutability 
+variables have no state transition management
+
 React
 Immediate Mode, like repl or the unix command line
 Declerative UI, describe how you want it to look, change state and let react take care of it
@@ -13,12 +19,31 @@ it'll do the minimal change-set and apply it to the DOM. You don't have to deal 
 
 State
 If you ask the same question twice and get different answers at different times you have state
+Value of identity at a time, some might call it variable but it's not, since they are predicated on a single 
+thread of control
 
-Persistent Data Structure
-In computing, a persistent data structure is a data structure that always preserves the previous version of itself when it is modified. Such data structures are effectively immutable, as their operations do not (visibly) update the structure in-place, but instead always yield a new updated structure. (A persistent data structure is not a data structure committed to persistent storage, such as a disk; this is a different and unrelated sense of the word "persistent.")
-Okasaki 
-Immutability 
-variables have no state transition management
+ClojureScript 
+compiler for clojure that targets Javascript also uses google closure compiler for optimizations.
+
+React 
+
+V in MVC
+
+Display logic and markup are highly cohesive, no reason to seperate them and compromise for a poor's man 
+programming language. 
+
+React builds a new virtual DOM subtree
+…diffs it with the old one
+…computes the minimal set of DOM mutations and puts them in a queue
+…and batch executes all updates
+
+
+Re-renders on every change: no magical data binding, no dirty checking (like angular), no explicit dom operation
+
+Components are declarative, and composoble. They recieve new state and re-render themselves
+
+
+Go routines
 
 Om 
 ShouldUpdate is only 

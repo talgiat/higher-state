@@ -209,34 +209,131 @@ master -> | E |
               <li class="fragment highlight-current-green grow">Atoms</li>
             <ul>
           </section>
+          <section>
+            <h2>ClojureScript</h2>
+          </section>
         </section>
 
-        <!-- Stop! coding time! -->
         <section>
-          <pre>
-            <code data-trim>
-              (defn- ellipsify [node text]
-                (u/set-node-text! node text)
-                (let [height (-> node .-clientHeight)]
-                  (when-not (node-within-height node height)
-                    (loop [viewable-words []
-                           rest-of-words (str/split text #"\s+")
-                           text ""]
-                      (let [last-word? (= (count rest-of-words) 1)
-                            viewable-words (conj viewable-words (first rest-of-words))
-                            new-text (str (str/join " " viewable-words) (if (not last-word?) "..." ""))]
-                        (u/set-node-text! node new-text)
-                        (let [text-overflows? (not (node-within-height node height))]
-                          (if (or last-word? text-overflows?)
-                            (when text-overflows?
-                              (u/set-node-text! node text))
-                            (recur viewable-words 
-                                   (drop 1 rest-of-words)
-                                   new-text))))))))
-            </code>
-          </pre>
+          <section>
+            <img src="/img/reactjs.png"/>
+          </section>
+          <section>
+            <h2>Old School - Render pages on the server</h2>
+          </section>
+          <section>
+            <h2 class="fragment">f(D) => V</h2>
+            <h2 class="fragment">f(D') => V'</h2>
+          </section>
+          <section>
+            <pre>
+              <code trim-data>
+      var ExampleApplication = React.createClass({
+        render: function() {
+          var elapsed = Math.round(this.props.elapsed  / 100);
+          var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+          var message =
+            'Successfully running for ' + seconds + ' seconds, render number: ' + num_of_renders;
+          return React.DOM.div(null, 
+            [React.DOM.p(null, message),
+             React.DOM.input(null)]);
+        }
+      });
+      var start = new Date().getTime();
+      var num_of_renders = 0;
+      setInterval(function() {
+        React.renderComponent(
+          ExampleApplication({elapsed: new Date().getTime() - start, 
+                              num_of_renders: num_of_renders += 1}),
+          document.getElementById('container')
+        );
+      }, 50);
+              </code>
+            </pre>
+          </section>
+          <section>
+            <img src="/img/react_pipeline.png"/>
+          </section>
+          <section>
+            <pre>
+              <code trim-data class="higher-code">
+                shouldComponentUpdate: function(nextProps, nextState) {
+                  return nextProps.id !== this.props.id;
+                }
+              </code>
+            </pre>
+          </section>
+          <section>
+            <pre>
+              <code trim-data class="higher-code">
+                shouldComponentUpdate: function(nextProps, nextState) {
+                  return nextProps.id !== this.props.id;
+                }
+              </code>
+            </pre>
+          </section>
         </section>
 
+        <section>
+          <section>
+            <h2>Om</h2>
+            <h3>React + ClojureScript</h3>
+          </section>
+          <section>
+            <h3>Explicit Global State is Good</h3>
+            <pre>
+              <code trim-data class="higher-code">
+            (def app-state (atom {:search {:keywords ""}
+                                  :results []}))
+              </code>
+            </pre>
+          </section>
+          <section>
+            <img style="background:white;" src="/img/component_tree.png"/>
+          </section>
+          <section>
+            <h2>Om Cursor, is a triplet:</h2>
+            <ul>
+              <li>component data to render</li>
+              <li>path into the app state</li>
+              <li>reference to the app state</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Application cursor</h3>
+            <pre class="higher-pre">
+            value {:search {:keywords ""}
+                   :results []} 
+            path []
+            state #&lt;Atom: {{:search ...}&gt;
+            </pre>
+          </section>
+          <section>
+            <h3>Search component cursor</h3>
+            <pre class="higher-pre">
+            value {:keywords ""} 
+            path [:search]
+            state #&lt;Atom: {{:search ...}&gt;
+            </pre>
+          </section>
+          <section>
+            <img class="fragment" src="/img/persistentvector2.png" />
+            <pre class="fragment">
+              <code trim-data>
+                (should-update [this next-props next-state]
+                  (or (not= current-props nex-props)
+                      (not= current-state nex-state)))
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h2>Fast!</h2>
+            <img src="/img/fast.jpg"/>
+          </section>
+          <section>
+            <img src="/img/epochal-time-model.png"/>
+          </section>
+        </section>
 
         <section>
           <h1>Questions ?</h1>
