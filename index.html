@@ -19,7 +19,7 @@
         <section>
           <h1>Higher State Of Consciousness</h1>
           <p>
-            Tal Giat (Tall Giant) <a href="http://twitter.com/talgiat">@talgiat</a>
+            Tall Giant <a href="http://twitter.com/talgiat">@talgiat</a>
           </p>
         </section>
 
@@ -32,7 +32,7 @@
             <img src="/img/wink.jpg" alt="Wink"/>
           </section>
           <section class="alt-state"/>
-            <img class="fragment5" src="/img/meditating.jpg" alt="medidating"/>
+            <img src="/img/meditating.jpg" alt="medidating"/>
             <img class="fragment" src="/img/mushrooms.jpg" alt="mushrooms"/>
             <img class="fragment" src="/img/dog-cannabis.jpg" alt="cannabis"/>
           </section>
@@ -41,18 +41,22 @@
         <!-- Clojure vs. Scala -->
         <section>
           <section>
-            <img src="/img/reuters-logo.jpg"/>
+            <img class="fragment" src="/img/reuters-logo.jpg"/>
+          </section>
+          <section>
+            <img class="fragment fade-out" src="/img/java.png"/>
+            <img class="fragment roll-in" src="/img/java_hate.png"/>
           </section>
           <section>
             <h2 class="fragment">Scala || Clojure</h2>
             <h2>&nbsp;</h2>
             <h2 class="fragment">(or Scala Clojure)</h2>
           </section>
-
           <section>
-            <img src="/img/hickey1.jpg" alt="Clojure"/>
-            <span class="clojure-scala">&nbsp;</span>
-            <img src="/img/odersky1.jpg" alt="Clojure"/>
+            <img src="/img/odersky.jpg"/>
+          </section>
+          <section>
+            <img src="/img/hickey.jpg"/>
           </section>
           <section>
             <h1>FUNCTIONAL</h1>
@@ -62,18 +66,149 @@
           </section>
           <section>
             <blockquote>
-              &ldquo;For weeks, months — no! from the very moment you were born — you've felt it calling to you. Every time you've held your keyboard aloft, crying out in anguish over an incomprehensible class hierarchy; every time you've lain awake at night, disturbing your loved ones with sobs over a mutation-induced heisenbug; every time a race condition has caused you to pull out more of your ever-dwindling hair, some secret part of you has known that there has to be a better way.&rdquo; 
+              &ldquo;When it started out it was an awful lot of fun. Of course the paying customers got shafted every now and then and after a while we began to take their complaints seriously. We began to feel as if we really were responsible for the successful error-free perfect use of these machines. I don’t think we are. I think we’re responsible for stretching them setting them off in new directions and keeping fun in the house.&rdquo;
             </blockquote>
-            <p>~ Clojure for the Brave and True</p>
+            <p> ~Alan Perlis</p>
           </section>
+            
         </section>
 
-        <!-- GOTO -> code, mutability -> state -->
+        <!-- Clojure, Immutable Data Structure -->
         <section>
-          <blockquote>
-            &ldquo;We got away from using GOTO statements, because it was hard to anwser the question: how did I get here in my code ? 
-            If we apply this to data, mutable data makes it hard to see, how did I get here to this state.&rdquo;
-          </blockquote>
+          <section>
+            <h3>Crash Course</h3>
+            <pre class="higher-code">
+              <code data-trim>
+  &nbsp;&nbsp;f(a,b) => (f a b)
+  if(a) { f(b)} => (if a (f b))
+              </code>
+            </pre>
+          </section>
+          <section>
+            <h3>Special Forms</h3>
+            <pre>
+              <code data-trim class="higher-code">
+              (def symbol init?)
+(do exprs*)
+(let [bindings* ] exprs*)
+(quote form)
+(fn name? [params* ] exprs*)
+(loop [bindings* ] exprs*)
+(recur exprs*)
+(try expr* catch-clause* finally-clause?)
+              </code>
+            </pre>
+          </section>
+          <section>
+            <img src="/img/lisp.png"/>
+          </section>
+          <section>
+            <h2>Homoiconic</h2>
+            <h3 class="fragment">Code as Data</h3>
+          </section>
+          <section>
+            <pre>
+              <code data-trim class="higher-code">
+            (defmacro when
+  "Evaluates test. If logical true, evaluates body in an 
+   implicit do."
+  [test & body]
+  (list 'if test (cons 'do body)))
+              </code>
+            </pre>
+          </section>
+          <section>
+            <pre>
+              <code data-trim class="higher-code">
+              (defmacro foreach [[sym coll] & body] 
+  `(loop [coll# ~coll]
+    (when-let [[~sym & xs#] (seq coll#)] 
+      ~@body
+      (recur xs#))))
+              </code>
+            <pre>
+          </section>
+          <section>
+            <ul class=>
+              <li>list ()</li>
+            </ul>
+          </section>
+          <section>
+            <ul>
+              <li>list (a b c d)</li>
+              <li>vector [a b c d]</li>
+              <li>hash-map {:a b :c d}</li>
+              <li>set #{a b c d}</li>
+            </ul>
+          </section>
+          <section>
+            <h2>Persistent Data Structure</h2>
+          </section>
+          <section>
+            <img src="/img/okasaki.png"/>
+          </section>
+          <section>
+            <img src="/img/phil_bagwell.png"/>
+          </section>
+          <section>
+            <p> a persistent data structure is a data structure that always preserves the previous version of itself when it is modified. Such data structures are effectively immutable, as their operations do not update the structure in-place, but instead always yield a new updated structure.</p>
+          </section>
+          <section>
+            <h3>Git Commit Trees</h3>
+            <pre>
+              <code data-trim class="higher-code">
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+---+    +---+    +---+    +---+
+branch -> | D +--+>+ C +--->+ B +--->+ A |
+          +---+ /  +---+    +---+    +---+
+               /     |
+          +---+  master^
+master -> | E |
+          +---+
+              </code>
+            <pre>
+          </section>
+          <section>
+             <img src="/img/persistentvector1.png" />
+          </section>
+          <section>
+            <img src="/img/bin-map1.png" />
+          </section>
+          <section>
+            <img src="/img/persistentvector2.png" />
+          </section>
+          <section>
+            <ul>
+              <li class="fragment">Objects hide state</li>
+              <li class="fragment">Every property of an object is an implicit argument to each one of its 
+                methods</li>
+              <li class="fragment">Objects don't encapsulate state when we introduce concurrency</li>
+            </ul>
+          </section>
+          <section>
+            <img src="/img/how_did_I_get_here.jpg"/>
+            <blockquote>
+              And you may ask yourself, well, how did I get here ?
+            </blockquote>
+            <p>&nbsp;</p>
+            <p class="fragment">
+              GOTO statements => Code
+            </p>
+            <p class="fragment">
+              Mutable data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=> State
+            </p>
+          </section>
+          <section>
+            <img src="/img/epochal-time-model.png"/>
+          </section>
+          <section>
+            <ul>
+              <li >Vars</li>
+              <li >Refs</li>
+              <li >Agents</li>
+              <li class="fragment highlight-current-green grow">Atoms</li>
+            <ul>
+          </section>
         </section>
 
         <!-- Stop! coding time! -->

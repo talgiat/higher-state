@@ -22,3 +22,8 @@
   margin: 0 20px;
   font-weight: bold;"
 }
+
+#higher-state .higher-code {
+  font-size: 1.5em;
+  line-height: 2em;
+}
