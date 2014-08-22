@@ -11,12 +11,6 @@ Okasaki
 Immutability 
 variables have no state transition management
 
-React
-Immediate Mode, like repl or the unix command line
-Declerative UI, describe how you want it to look, change state and let react take care of it
-re-render every time, cheap re-render since react builds a virtual DOM every time you tell it to re-render
-it'll do the minimal change-set and apply it to the DOM. You don't have to deal with it.
-
 State
 If you ask the same question twice and get different answers at different times you have state
 Value of identity at a time, some might call it variable but it's not, since they are predicated on a single 
@@ -25,7 +19,7 @@ thread of control
 ClojureScript 
 compiler for clojure that targets Javascript also uses google closure compiler for optimizations.
 
-React 
+React
 
 V in MVC
 
@@ -38,14 +32,13 @@ React builds a new virtual DOM subtree
 …and batch executes all updates
 
 
-Re-renders on every change: no magical data binding, no dirty checking (like angular), no explicit dom operation
+Re-renders on every change: no magical data binding, no dirty checking (like angular), no explicit dom operations.
+There is no explicit observation (bind model to view add listener, need to manage those so there is no leak)
 
 Components are declarative, and composoble. They recieve new state and re-render themselves
 
 
-Go routines
 
 Om 
 ShouldUpdate is only 
 
-ClojureScript
